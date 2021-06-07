@@ -1,20 +1,45 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Top Headlines</ion-title>
+    <ion-menu-button menu="main-menu" slot="start"></ion-menu-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<div *ngIf="service.articles.length">
+  <div *ngFor="let article of service.articles">
+    <ion-card (click)="goToArticle(article.url)">
+      <ion-card-header>
+        <ion-card-subtitle> {{ article.author }}</ion-card-subtitle>
+        <ion-card-title>{{ article.title }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div>
+          <ion-img [src]="article.urlToImage" ></ion-img>
+        </div>
+        {{ article.description }}
+      </ion-card-content>
+    </ion-card>
   </div>
+</div>
+
+
+
+
+    <!-- <ion-tabs slot="fixed">
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="in">
+        <ion-label>INDIA</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="us">
+        <ion-label>USA</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs> -->
+
+
+
 </ion-content>
